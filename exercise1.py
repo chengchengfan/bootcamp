@@ -55,7 +55,7 @@ str1 = 'ATCGGTCATCGATTA'
 str2 = 'CTAGTAAATCGAT'
 
 
-def longest_common_str(seq):
+def longest_common_str(str1, str2):
     """determining the longest common substring."""
     common = []
     for i in range(len(str1)):
@@ -74,12 +74,77 @@ def RNA_hairpin(seq):
         print('False')
 
 
+def parens_count(struc):
+"""Ensure there are equal number of open and closed parentheses in the structure."""
+    return struc.count('(') == struc.count(')')
+    print(parens_count('....'))
+
+
 # Exercise 1.5b
-def dotparen_to_bp(seq):
-    """a tuple of 2-tuples representing the base pairs."""
-    pairs = ()
-    for i in range(len(seq)):
-        one = seq[i]
-        two = reversed(seq[i])
-        pairs.append((one, two))
-    print(pairs)
+def dot_parens_to_bp(seq):
+    """
+    Convert a dot-parens structure to a list os base pairs.
+    Return False if the structure is invalid.
+    """
+    if not parens_count(struc):
+        print('Error in input structure.')
+        return False
+    # Initialize list of open parens and list of base pairs
+    open_parens = []
+    bps = []
+
+    # Scan through substring
+    for i, x in enumerate(struc):
+        if x == '(':
+            open_parens.append(i)
+        elif x == ')':
+            if len(open_parens) > 0
+                bps.append((open_parens.pop(), i))
+            else:
+                print('Error in input structure.')
+                return False
+    # Return the result as a tuple
+    return tuple(sorted(bps))
+
+
+# Exercise 1.5c
+def hairpin_check(bps):
+    """Check to make sure no hairpins are too short."""
+    for bp in bps:
+        if bp[1] - bp [0] < 4:
+            print('A hairpin is too short.')
+            return False
+
+    # Everything checks out
+    return True
+
+
+# Exercise 1.5d
+def rna_ss_validator(seq, sec_struc, wobble=True):
+    """Validate and RNA structure."""
+    # Convert structure to base pairs
+    bps = dot_parens_to_bp(sec_struc)
+
+    # If this failed, the structure is invalid
+    if not bps:
+        return False
+
+    # Do the hairpin check
+    if not hairpin_check(bps):
+        return False
+
+    # Possible base pairs
+    if wobble:
+        ok_bps = ('gc', 'cg', 'au', 'ua', 'gu', 'ug')
+    else:
+        ok_bps = ('gc', 'cg', 'au', 'ua')
+
+    # Check complementarity
+    for bp in bps:
+        bp_str = (seq[bp[0]]) + seq[bp[1]]).lower()
+        if bp_str not in ok_bps:
+            print('Invalid base pair.')
+            return False
+
+    # Everything passed
+    return True
