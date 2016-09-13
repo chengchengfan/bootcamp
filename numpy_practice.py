@@ -1,3 +1,4 @@
+# lessen 20 practice
 import numpy as np
 
 xa_high = np.loadtxt('data/xa_high_food.csv', comments='#')

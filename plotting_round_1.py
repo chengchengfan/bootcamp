@@ -35,5 +35,5 @@ plt.ylabel('frequency')
 plt.legend(('low concentration', 'high concentration'), loc='upper right')
 # plt.show()
 
-# Save the figure
+# Save the figure, figures could also be saved as .pdf
 plt.savefig('egg_area_histograms.svg', bbox_inches='tight')
