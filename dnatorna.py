@@ -8,6 +8,6 @@ def rna(seq):
     """
 
     # Convert to uppercase
-    seq = seq.upper()
+    seq = seq.lower()
 
-    return seq.replace('T', 'U')
+    return seq.replace('t', 'u')
