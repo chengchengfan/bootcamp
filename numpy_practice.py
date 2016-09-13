@@ -11,3 +11,5 @@ def xa_to_diameter(xa):
     # Compute diameter from area
     # A = pi * d^2/4
     diameter = np.sqrt(xa * 4 / np.pi)
+
+    return diameter
