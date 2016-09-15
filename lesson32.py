@@ -1,3 +1,5 @@
+#Lesson32 practices
+
 df = pd.read_csv('data/frog_tongue_adhesion.csv', comment='#')
 
 #a
